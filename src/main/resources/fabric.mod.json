@@ -1,19 +1,19 @@
 {
 	"schemaVersion": 1,
-	"id": "scrolltweaks",
+	"id": "${id}",
 	"version": "${version}",
-	"name": "Scroll Tweaks",
-	"description": "Customizable hotbar scrolling.",
+	"name": "${name}",
+	"description": "${description}",
 	"authors": [
 		"Microcontrollers"
 	],
 	"contact": {
-		"homepage": "https://modrinth.com/mod/scrolltweaks",
-		"sources": "https://github.com/MicrocontrollersDev/ScrollTweaks",
-		"issues": "https://github.com/MicrocontrollersDev/ScrollTweaks/issues"
+		"homepage": "${modrinth}",
+		"sources": "${source}",
+		"issues": "${issues}"
 	},
-	"license": "LGPL-3.0",
-	"icon": "assets/scrolltweaks/icon.png",
+	"license": "${license}",
+	"icon": "assets/${id}/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
@@ -24,13 +24,24 @@
 		]
 	},
 	"mixins": [
-		"scrolltweaks.mixins.json"
+		"${id}.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.15.0",
+		"fabricloader": ">=0.16.0",
 		"minecraft": ">=1.20",
 		"java": ">=17",
 		"fabric-api": "*",
 		"yet_another_config_lib_v3": "*"
+	},
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.kofi": "${kofi}",
+				"modmenu.discord": "${discord}",
+				"modmenu.modrinth": "${modrinth}",
+				"modmenu.curseforge": "${curseforge}"
+			},
+			"update_checker": true
+		}
 	}
 }
