@@ -9,8 +9,14 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(MouseHandler.class)
 public class MouseHandlerMixin {
-    // mojmap... what is swapPaint...
-    @ModifyArg(method = "onScroll", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Inventory;swapPaint(D)V"), index = 0)
+    @ModifyArg(method = "onScroll", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/components/spectator/SpectatorGui;onMouseScrolled(I)V"))
+    private int modifySpectatorScroll(int direction) {
+        if (ScrollTweaksConfig.CONFIG.instance().reverseScroll) return -direction;
+        else return direction;
+    }
+
+    // mojang... what is swapPaint...
+    @ModifyArg(method = "onScroll", at = @At(value = "INVOKE", target = /*? if >=1.21.3 {*/ "Lnet/minecraft/client/ScrollWheelHandler;getNextScrollWheelSelection(DII)I" /*?} else {*/ /*"Lnet/minecraft/world/entity/player/Inventory;swapPaint(D)V" *//*?}*/), index = 0)
     private double modifyScroll(double direction) {
         if (ScrollTweaksConfig.CONFIG.instance().disableScroll) return 0;
         assert Minecraft.getInstance().player != null;
