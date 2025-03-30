@@ -1,5 +1,3 @@
-import dev.kikugie.stonecutter.StonecutterSettings
-
 pluginManagement {
 	repositories {
 		mavenCentral()
@@ -13,14 +11,14 @@ pluginManagement {
 }
 
 plugins {
-	id("dev.kikugie.stonecutter") version "0.4.4"
+	id("dev.kikugie.stonecutter") version "0.5.2"
 }
 
-extensions.configure<StonecutterSettings> {
-	kotlinController= true
+stonecutter {
+	kotlinController = true
 	centralScript = "build.gradle.kts"
 
-	shared {
+	create(rootProject) {
 		fun mc(mcVersion: String, loaders: Iterable<String>) {
 			for (loader in loaders) {
 				vers("$mcVersion-$loader", mcVersion)
@@ -28,12 +26,13 @@ extensions.configure<StonecutterSettings> {
 		}
 
 		mc("1.20.4", listOf("fabric"))
-		mc("1.21", listOf("neoforge"))
+		mc("1.21.1", listOf("neoforge"))
 		mc("1.21.3", listOf("fabric", "neoforge"))
+		mc("1.21.5", listOf("fabric", "neoforge"))
 
-		vcsVersion("1.21.3-fabric")
+		vcsVersion = "1.21.5-fabric"
 	}
-	create(rootProject)
 }
 
-rootProject.name = "Scroll Tweaks"
+
+rootProject.name = "ExampleMod"

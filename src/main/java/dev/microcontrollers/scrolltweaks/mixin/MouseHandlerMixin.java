@@ -20,7 +20,7 @@ public class MouseHandlerMixin {
     private double modifyScroll(double direction) {
         if (ScrollTweaksConfig.CONFIG.instance().disableScroll) return 0;
         assert Minecraft.getInstance().player != null;
-        int slot = Minecraft.getInstance().player.getInventory().selected;
+        int slot = Minecraft.getInstance().player.getInventory()./*? if >= 1.21.5 {*/getSelectedSlot() /*?} else {*//*selected*//*?}*/;
         if (ScrollTweaksConfig.CONFIG.instance().reverseScroll) direction = -direction;
         if (ScrollTweaksConfig.CONFIG.instance().preventOverflowScroll && ((slot == 8 && direction < 0) || (slot == 0 && direction > 0)))
             return 0;
