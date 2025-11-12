@@ -7,6 +7,8 @@ import org.polyfrost.oneconfig.api.config.v1.annotations.Switch;
 public class ScrollTweaksConfig extends Config {
     public ScrollTweaksConfig() {
         super(ScrollTweaks.ID + ".json", ScrollTweaks.NAME, Category.QOL);
+
+        loadFrom("patcher.toml");
     }
 
 
